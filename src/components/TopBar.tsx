@@ -115,9 +115,9 @@ interface TopBarProps {
 }
 
 /**
- * Top navigation bar for the Nerve cockpit.
+ * Top navigation bar for the OpenClaw Console.
  *
- * Displays the Nerve logo/brand, and provides toggle buttons for the
+ * Displays the thehumanai.ai logo/brand, and provides toggle buttons for the
  * Agent Log, Events, Token Usage, and (in compact mode) Sessions +
  * Workspace panels.
  */
@@ -244,11 +244,11 @@ export function TopBar({
           <div className="min-w-0">
             <div className="flex items-center gap-2">
               <span className="truncate text-sm font-semibold uppercase tracking-[0.34em] text-primary max-[371px]:text-xs max-[371px]:tracking-[0.22em] sm:text-base">
-                Nerve
+                Console
               </span>
             </div>
             <div className="hidden xl:block text-[0.733rem] text-muted-foreground/80">
-              OpenClaw Cockpit{" "}
+              thehumanai.ai{" "}
             </div>
           </div>
         </div>

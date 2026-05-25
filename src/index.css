@@ -14,9 +14,13 @@
 @layer base {
   html {
     background: var(--color-background);
-    color-scheme: dark light;
+    color-scheme: dark;
     scrollbar-gutter: stable both-edges;
     font-size: var(--font-size-base);
+  }
+  html.dark,
+  html {
+    color-scheme: dark;
   }
   * {
     @apply border-border/60 outline-ring/50;
@@ -1371,52 +1375,66 @@
   --color-scrollbar-hover: var(--scrollbar-hover);
 }
 
-/* Default theme values (mission-control). Single source of truth for CSS defaults.
-   themes.ts applyTheme() overrides these at runtime via element.style.setProperty(). */
+/* Phase 2 Palette — OpenClaw Console (thehumanai.ai) */
+/* Replaces mission-control theme with console-specific palette */
 :root {
   --radius: 1.067rem;
-  --background: #0c1016;
-  --foreground: #d0c8bc;
-  --card: #10151d;
-  --card-foreground: #d0c8bc;
-  --popover: #10151d;
-  --popover-foreground: #d0c8bc;
-  --primary: #f0b35d;
-  --primary-foreground: #0c1016;
-  --secondary: #161c25;
-  --secondary-foreground: #d0c8bc;
-  --muted: #161c25;
-  --muted-foreground: #7e8794;
-  --accent: #161c25;
-  --accent-foreground: #d0c8bc;
-  --destructive: #e06c66;
-  --destructive-foreground: #d0c8bc;
+  
+  /* Phase 2 Core Palette */
+  --color-bg: #000000;
+  --color-surface: #11111C;
+  --color-ink: #F2F0F7;
+  --color-muted: #A8A4B8;
+  --color-primary: #FF1493;
+  --color-secondary: #AF64C8;
+  --color-tertiary: #3D5BFF;
+  --color-success: #5FB89A;
+  --color-warn: #D4A55E;
+  --color-error: #D17282;
+  
+  /* Mapped to Tailwind tokens */
+  --background: #000000;
+  --foreground: #F2F0F7;
+  --card: #11111C;
+  --card-foreground: #F2F0F7;
+  --popover: #11111C;
+  --popover-foreground: #F2F0F7;
+  --primary: #FF1493;
+  --primary-foreground: #000000;
+  --secondary: #AF64C8;
+  --secondary-foreground: #F2F0F7;
+  --muted: #11111C;
+  --muted-foreground: #A8A4B8;
+  --accent: #11111C;
+  --accent-foreground: #F2F0F7;
+  --destructive: #D17282;
+  --destructive-foreground: #F2F0F7;
   --border: #27303c;
   --input: #27303c;
-  --ring: #f0b35d;
-  --green: #7fc782;
-  --red: #e06c66;
-  --orange: #e79a59;
-  --purple: #b9acda;
-  --info: #7ea6c8;
-  --chart-1: #f0b35d;
-  --chart-2: #7fc782;
-  --chart-3: #b9acda;
-  --chart-4: #e06c66;
-  --chart-5: #7ea6c8;
+  --ring: #FF1493;
+  --green: #5FB89A;
+  --red: #D17282;
+  --orange: #D4A55E;
+  --purple: #AF64C8;
+  --info: #3D5BFF;
+  --chart-1: #FF1493;
+  --chart-2: #5FB89A;
+  --chart-3: #AF64C8;
+  --chart-4: #D17282;
+  --chart-5: #3D5BFF;
   --message-user: #141821;
   --message-assistant: #121918;
   --message-system: #131824;
   --scrollbar: #27303c;
   --scrollbar-hover: #36414f;
-  --sidebar: #10151d;
-  --sidebar-foreground: #d0c8bc;
-  --sidebar-primary: #f0b35d;
-  --sidebar-primary-foreground: #0c1016;
-  --sidebar-accent: #161c25;
-  --sidebar-accent-foreground: #d0c8bc;
+  --sidebar: #11111C;
+  --sidebar-foreground: #F2F0F7;
+  --sidebar-primary: #FF1493;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #AF64C8;
+  --sidebar-accent-foreground: #F2F0F7;
   --sidebar-border: #27303c;
-  --sidebar-ring: #f0b35d;
+  --sidebar-ring: #FF1493;
 }
 
 /* Activity indicator animations */

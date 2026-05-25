@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="60" viewBox="0 0 240 60">
+  <style>
+    .logo-text {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 24px;
+      font-weight: 600;
+      fill: #FF1493;
+      letter-spacing: -0.5px;
+    }
+  </style>
+  <text x="120" y="35" text-anchor="middle" class="logo-text">thehumanai.ai</text>
+</svg>
