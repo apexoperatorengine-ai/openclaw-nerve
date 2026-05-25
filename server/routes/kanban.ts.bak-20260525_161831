@@ -1272,7 +1272,7 @@ Deliver your result as a clear summary of what was done.`,
       return c.json({ error: 'duplicate_execution', details: 'Task is already being executed' }, 409);
     }
 
-    if (!('duplicate' in execution) && (execution as any).primarySpawn) {
+    if (!('duplicate' in execution) && execution.primarySpawn) {
       const { runSessionKey, prompt, model, thinking } = (execution as { primarySpawn: { runSessionKey: string; prompt: string; model: string; thinking: unknown } }).primarySpawn;
       const spawnArgs: Record<string, unknown> = {
         task: prompt,
@@ -1319,7 +1319,7 @@ Deliver your result as a clear summary of what was done.`,
       return c.json((execution as { task: unknown }).task);
     }
 
-    const { fallbackLaunch } = (execution as any);
+    const { fallbackLaunch } = (execution as { fallbackLaunch: { sessionKey: string } });
     if (!fallbackLaunch) {
       throw new Error(`No kanban launch strategy was selected for task ${id}`);
     }

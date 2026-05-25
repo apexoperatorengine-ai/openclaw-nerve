@@ -53,7 +53,7 @@ app.post(
   rateLimitGeneral,
   zValidator('json', agentLogSchema, (result, c) => {
     if (!result.success) {
-      const msg = (result as { error: { issues: { message: string }[] } }).error.issues[0]?.message || 'Invalid log entry';
+      const msg = result.error.issues[0]?.message || 'Invalid log entry';
       return c.json({ ok: false, error: msg }, 400);
     }
   }),

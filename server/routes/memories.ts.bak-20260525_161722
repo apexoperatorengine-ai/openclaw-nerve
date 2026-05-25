@@ -417,7 +417,7 @@ app.post(
   rateLimitGeneral,
   zValidator('json', createMemorySchema, (result, c) => {
     if (!result.success) {
-      const msg = (result as { error: { issues: { message: string }[] } }).error.issues[0]?.message || 'Invalid request';
+      const msg = result.error.issues[0]?.message || 'Invalid request';
       return c.json({ ok: false, error: msg }, 400);
     }
   }),
@@ -515,7 +515,7 @@ app.put(
   rateLimitGeneral,
   zValidator('json', updateSectionSchema, (result, c) => {
     if (!result.success) {
-      const msg = (result as { error: { issues: { message: string }[] } }).error.issues[0]?.message || 'Invalid request';
+      const msg = result.error.issues[0]?.message || 'Invalid request';
       return c.json({ ok: false, error: msg }, 400);
     }
   }),
@@ -604,7 +604,7 @@ app.put(
       }
 
       if (!result.ok) {
-        return c.json({ ok: false, error: (result as any).error }, (result as any).status);
+        return c.json({ ok: false, error: result.error }, result.status);
       }
 
       broadcast('memory.changed', {
@@ -640,7 +640,7 @@ app.delete(
   rateLimitGeneral,
   zValidator('json', deleteMemorySchema, (result, c) => {
     if (!result.success) {
-      const msg = (result as { error: { issues: { message: string }[] } }).error.issues[0]?.message || 'Invalid request';
+      const msg = result.error.issues[0]?.message || 'Invalid request';
       return c.json({ ok: false, error: msg }, 400);
     }
   }),

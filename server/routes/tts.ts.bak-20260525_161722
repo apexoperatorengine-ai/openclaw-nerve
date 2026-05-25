@@ -57,7 +57,7 @@ app.post(
   rateLimitTTS,
   zValidator('json', ttsSchema, (result, c) => {
     if (!result.success) {
-      return c.text((result as { error: { issues: { message: string }[] } }).error.issues[0]?.message || 'Invalid request', 400);
+      return c.text(result.error.issues[0]?.message || 'Invalid request', 400);
     }
   }),
   async (c) => {

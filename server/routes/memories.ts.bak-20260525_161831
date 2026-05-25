@@ -604,7 +604,7 @@ app.put(
       }
 
       if (!result.ok) {
-        return c.json({ ok: false, error: (result as any).error }, (result as any).status);
+        return c.json({ ok: false, error: (result as { error: string; status: number }).error }, (result as { error: string; status: number }).status);
       }
 
       broadcast('memory.changed', {
