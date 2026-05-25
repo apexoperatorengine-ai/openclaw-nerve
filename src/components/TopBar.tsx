@@ -20,7 +20,7 @@ import {
 } from "lucide-react";
 import type { ViewMode } from "@/features/command-palette/commands";
 import type { AgentLogEntry, EventEntry, TokenData } from "@/types";
-import NerveLogo from "./NerveLogo";
+import { BusinessFilterStrip } from "./BusinessFilterStrip";
 
 const AgentLog = lazy(() =>
   import("@/features/activity/AgentLog").then((m) => ({ default: m.AgentLog })),
@@ -135,7 +135,6 @@ export function TopBar({
   viewMode = "chat",
   onViewModeChange,
   showKanbanView = true,
-  performanceMode = false,
 }: TopBarProps) {
   const [activePanel, setActivePanel] = useState<PanelId>(null);
   const panelRef = useRef<HTMLDivElement>(null);
@@ -236,21 +235,14 @@ export function TopBar({
 
   return (
     <div className="relative z-40 px-2 pt-2 sm:px-4 sm:pt-3">
-      <header className="topbar-mobile-compact shell-panel flex min-h-14 flex-wrap items-center gap-x-3 gap-y-2 rounded-2xl px-3 py-2 shrink-0 max-[371px]:gap-x-1.5 max-[371px]:px-2 sm:flex-nowrap sm:px-4">
+      <header className="topbar-mobile-compact shell-panel flex min-h-14 flex-col gap-3 rounded-2xl px-3 py-3 shrink-0 max-[371px]:px-2 sm:px-4">
+        <div className="flex min-h-11 flex-wrap items-center gap-x-3 gap-y-2 max-[371px]:gap-x-1.5 sm:flex-nowrap">
         <div className="flex min-w-0 items-center gap-3 max-[371px]:gap-2">
-          <div className="flex h-10 w-10 items-center justify-center rounded-2xl border border-primary/20 bg-background/55 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] max-[371px]:h-9 max-[371px]:w-9">
-            <NerveLogo size={24} static={performanceMode} />
-          </div>
-          <div className="min-w-0">
-            <div className="flex items-center gap-2">
-              <span className="truncate text-sm font-semibold uppercase tracking-[0.34em] text-primary max-[371px]:text-xs max-[371px]:tracking-[0.22em] sm:text-base">
-                Console
-              </span>
-            </div>
-            <div className="hidden xl:block text-[0.733rem] text-muted-foreground/80">
-              thehumanai.ai{" "}
-            </div>
-          </div>
+          <img 
+            src="/thehumanai-logo.png" 
+            alt="thehumanai.ai" 
+            className="h-8 w-auto max-[371px]:h-7"
+          />
         </div>
         {/* View mode toggle */}
         {onViewModeChange && (
@@ -392,6 +384,12 @@ export function TopBar({
           >
             <Settings size={14} aria-hidden="true" />
           </button>
+        </div>
+        </div>
+
+        {/* Three-tier business filter strip */}
+        <div className="w-full border-t border-border/30 pt-3">
+          <BusinessFilterStrip />
         </div>
       </header>
 

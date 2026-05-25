@@ -8,7 +8,6 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import NerveLogo from '../../components/NerveLogo';
 
 interface LoginPageProps {
   onLogin: (password: string) => Promise<void>;
@@ -41,9 +40,11 @@ export function LoginPage({ onLogin, error }: LoginPageProps) {
       <div className="shell-panel relative w-full max-w-[min(92vw,980px)] overflow-hidden rounded-[28px]">
         <div className="grid lg:grid-cols-[1.15fr_0.85fr]">
           <div className="border-b border-border/70 bg-gradient-to-br from-background via-card/90 to-secondary/90 px-6 py-8 sm:px-8 lg:border-b-0 lg:border-r">
-            <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-primary/20 bg-background/60">
-              <NerveLogo size={30} />
-            </div>
+            <img 
+              src="/thehumanai-icon.png" 
+              alt="thehumanai.ai" 
+              className="h-16 w-auto"
+            />
             <div className="mt-6 text-[0.667rem] font-medium uppercase tracking-[0.32em] text-primary/80">
               Private Cockpit Access
             </div>
@@ -51,7 +52,7 @@ export function LoginPage({ onLogin, error }: LoginPageProps) {
               Sign in to your agent control surface
             </h1>
             <p className="mt-4 max-w-[48ch] text-sm leading-6 text-muted-foreground sm:text-base">
-              OpenClaw Console is the high visibility workspace for thehumanai.ai agent ecosystem. Authenticate once, then manage chats, tasks, files, memory, and telemetry from one place.
+              thehumanai.ai OS Console is the high visibility workspace for thehumanai.ai agent ecosystem. Authenticate once, then manage chats, tasks, files, memory, and telemetry from one place.
             </p>
 
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
