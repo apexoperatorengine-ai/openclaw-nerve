@@ -3,7 +3,7 @@ import { themes, type ThemeName } from '@/lib/themes';
 import { fonts, type FontName } from '@/lib/fonts';
 import type { TTSProvider } from '@/features/tts/useTTS';
 
-export type ViewMode = 'chat' | 'kanban';
+export type ViewMode = 'chat' | 'kanban' | 'council';
 
 export interface CommandActions {
   onNewSession: () => void;
@@ -190,29 +190,38 @@ export function createCommands(actions: CommandActions): Command[] {
       category: 'voice',
       keywords: ['wake', 'voice', 'microphone', 'hey'],
     },
-    // Kanban commands
-    ...(actions.onSetViewMode && actions.canShowKanban !== false ? [
+    // View mode commands
+    ...(actions.onSetViewMode ? [
       {
-        id: 'open-kanban',
-        label: 'Open Tasks View',
-        action: () => actions.onSetViewMode!('kanban'),
-        category: 'kanban' as const,
-        keywords: ['kanban', 'board', 'tasks', 'view'],
+        id: 'open-council',
+        label: 'Open Council View',
+        action: () => actions.onSetViewMode!('council'),
+        category: 'navigation' as const,
+        keywords: ['council', 'agents', 'avatars', 'view'],
       },
       {
         id: 'open-chat',
         label: 'Open Chat View',
         action: () => actions.onSetViewMode!('chat'),
-        category: 'kanban' as const,
+        category: 'navigation' as const,
         keywords: ['chat', 'conversation', 'view'],
       },
-      {
-        id: 'create-kanban-task',
-        label: 'Create Task',
-        action: () => actions.onSetViewMode!('kanban'),
-        category: 'kanban' as const,
-        keywords: ['kanban', 'task', 'create', 'new', 'add'],
-      },
+      ...(actions.canShowKanban !== false ? [
+        {
+          id: 'open-kanban',
+          label: 'Open Tasks View',
+          action: () => actions.onSetViewMode!('kanban'),
+          category: 'kanban' as const,
+          keywords: ['kanban', 'board', 'tasks', 'view'],
+        },
+        {
+          id: 'create-kanban-task',
+          label: 'Create Task',
+          action: () => actions.onSetViewMode!('kanban'),
+          category: 'kanban' as const,
+          keywords: ['kanban', 'task', 'create', 'new', 'add'],
+        },
+      ] : []),
     ] : []),
     ...themeCommands,
     ...fontCommands,

@@ -56,6 +56,7 @@ const WorkspacePanel = lazy(() => import('@/features/workspace/WorkspacePanel').
 
 // Lazy-loaded view modes
 const KanbanPanel = lazy(() => import('@/features/kanban/KanbanPanel').then(m => ({ default: m.KanbanPanel })));
+const CouncilView = lazy(() => import('@/features/council/CouncilView').then(m => ({ default: m.CouncilView })));
 
 interface AppProps {
   onLogout?: () => void;
@@ -82,6 +83,7 @@ function buildWorkspaceSwitchErrorMessage(result: {
 function getInitialViewMode(canShowKanban: boolean): ViewMode {
   try {
     const saved = localStorage.getItem('nerve:viewMode');
+    if (saved === 'council') return 'council';
     if (saved === 'kanban' && canShowKanban) return 'kanban';
   } catch {
     // ignore storage errors
@@ -1079,11 +1081,18 @@ export default function App({ onLogout }: AppProps) {
         )}
 
         {/*
-         * Chat panel is always rendered but hidden when kanban is active.
+         * Chat panel is always rendered but hidden when kanban/council active.
          * This keeps ChatPanel → InputBar → useVoiceInput mounted so that
          * in-progress voice recording / STT transcription survives tab switches.
          * See: https://github.com/.../issues/64
          */}
+        {viewMode === 'council' && (
+          <div className="shell-panel boot-panel flex-1 flex flex-col min-w-0 min-h-0 overflow-hidden rounded-[28px]">
+            <Suspense fallback={<div className="flex-1 flex items-center justify-center text-muted-foreground text-xs bg-background">Loading…</div>}>
+              <CouncilView />
+            </Suspense>
+          </div>
+        )}
         {viewMode === 'kanban' && (
           <div className="shell-panel boot-panel flex-1 flex flex-col min-w-0 min-h-0 overflow-hidden rounded-[28px]">
             <Suspense fallback={<div className="flex-1 flex items-center justify-center text-muted-foreground text-xs bg-background">Loading…</div>}>
@@ -1092,11 +1101,11 @@ export default function App({ onLogout }: AppProps) {
           </div>
         )}
         {isCompactLayout ? (
-          <div className={`shell-panel flex-1 min-w-0 min-h-0 overflow-hidden rounded-[28px] boot-panel${viewMode === 'kanban' ? ' hidden' : ''}`}>
+          <div className={`shell-panel flex-1 min-w-0 min-h-0 overflow-hidden rounded-[28px] boot-panel${viewMode === 'kanban' || viewMode === 'council' ? ' hidden' : ''}`}>
             {chatContent}
           </div>
         ) : (
-          <div style={{ display: viewMode === 'kanban' ? 'none' : 'contents' }}>
+          <div style={{ display: viewMode === 'kanban' || viewMode === 'council' ? 'none' : 'contents' }}>
             <ResizablePanels
               leftPercent={panelRatio}
               onResize={setPanelRatio}
