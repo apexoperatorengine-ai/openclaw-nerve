@@ -1435,6 +1435,15 @@
   --sidebar-accent-foreground: #F2F0F7;
   --sidebar-border: #27303c;
   --sidebar-ring: #FF1493;
+  
+  /* Remap --color-* tokens to Phase 2 palette (overrides @theme inline defaults) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-muted-foreground: var(--muted-foreground);
 }
 
 /* Activity indicator animations */

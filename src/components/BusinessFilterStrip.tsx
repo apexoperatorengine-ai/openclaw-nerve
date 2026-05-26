@@ -152,8 +152,8 @@ export function BusinessFilterStrip() {
                 transition-all duration-150
                 max-[371px]:min-h-[34px] max-[371px]:px-2 max-[371px]:text-[0.65rem]
                 ${isActive 
-                  ? 'bg-secondary text-foreground border-secondary shadow-[0_0_10px_rgba(175,100,200,0.25)]' 
-                  : 'bg-surface text-muted-foreground border-secondary/40'
+                  ? 'bg-primary/20 text-foreground border-primary shadow-[0_0_10px_rgba(255,20,147,0.25)]' 
+                  : 'bg-surface text-muted-foreground border-secondary/30'
                 }
               `}
               title={business.tooltip}
